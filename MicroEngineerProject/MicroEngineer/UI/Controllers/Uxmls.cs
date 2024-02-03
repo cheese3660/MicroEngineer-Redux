@@ -71,7 +71,7 @@ namespace MicroEngineer.UI
 
         public WindowOptions InstantiateWindowOptions(string windowId, bool makeDraggable = true)
         {
-            return new WindowOptions()
+            return WindowOptions.Default with
             {
                 WindowId = windowId,
                 IsHidingEnabled = true,
@@ -79,7 +79,8 @@ namespace MicroEngineer.UI
                 {
                     IsMovingEnabled = makeDraggable,
                     CheckScreenBounds = true
-                }
+                },
+                DisableGameInputForTextFields = true
             };
         }
     }
