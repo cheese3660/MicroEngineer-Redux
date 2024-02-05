@@ -156,7 +156,7 @@ namespace MicroMod
                 if (AltUnit != null && AltUnit.IsActive)
                     return AltUnit.Unit;
 
-                if (d > 0.001 && d < 1) // mili
+                if (d != 0 && Math.Abs(d) < 1) // mili
                 {
                     return this.MiliUnit ?? this.BaseUnit ?? "";
                 }
