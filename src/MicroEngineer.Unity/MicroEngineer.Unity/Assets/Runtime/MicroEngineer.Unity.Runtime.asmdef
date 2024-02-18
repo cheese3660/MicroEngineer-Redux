@@ -1,0 +1,16 @@
+{
+    "name": "MicroEngineer.Unity.Runtime",
+    "rootNamespace": "MicroEngineer.Unity.Runtime",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "MicroEngineer.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

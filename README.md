@@ -52,4 +52,4 @@ Mod folder will be placed in ..\Kerbal Space Program 2\BepInEx\plugins\
 * Original author: [Micrologist](https://github.com/Micrologist)
 
 
-<img src="https://img.shields.io/github/license/Micrologist/MicroEngineer" alt="Licence"/>
+<img src="https://img.shields.io/github/license/Falki-git/MicroEngineer" alt="Licence"/>
