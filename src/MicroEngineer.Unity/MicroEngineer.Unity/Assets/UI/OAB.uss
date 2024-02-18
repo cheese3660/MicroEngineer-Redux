@@ -76,7 +76,7 @@
 .close-button__background {
     width: 100%;
     height: 100%;
-    background-image: url('project://database/Assets/UI/micro_engineer/k2d2_cross.png?fileID=2800000&guid=f495cb715406a4f4cac351a10a68524d&type=3#k2d2_cross');
+    background-image: url('project://database/Assets/Images/k2d2_cross.png?fileID=2800000&guid=770f096405448fe4faa3c0f72e6c4062&type=3#k2d2_cross');
     -unity-background-image-tint-color: rgb(192, 199, 213);
     -unity-background-scale-mode: scale-to-fit;
 }

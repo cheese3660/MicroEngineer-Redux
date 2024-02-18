@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/MicroEngineer/Flight.uss?fileID=7433441132597879392&amp;guid=7ff56adfaa9f5dd41b0bff8ab8aafc04&amp;type=3#Flight" />
+    <Style src="project://database/Assets/UI/Flight.uss?fileID=7433441132597879392&amp;guid=7ff56adfaa9f5dd41b0bff8ab8aafc04&amp;type=3#Flight" />
     <ui:VisualElement name="root" class="edit-window__root">
         <ui:VisualElement name="header" class="edit-window__header" style="padding-left: 25px;">
             <ui:Label text="AVAILABLE" display-tooltip-when-elided="true" style="flex-grow: 1; -unity-text-align: upper-center; color: rgb(237, 208, 147);" />

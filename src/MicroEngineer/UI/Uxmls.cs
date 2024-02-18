@@ -10,14 +10,14 @@ namespace MicroEngineer.UI
         private static Uxmls _instance;
         private static readonly ManualLogSource _logger = Logger.CreateLogSource("MicroEngineer.Uxmls");
 
-        public const string MAIN_GUI_HEADER_PATH = "/microengineer_flightui/microengineer/mainguiheader.uxml";
-        public const string ENTRY_WINDOW_PATH = "/microengineer_flightui/microengineer/entrywindow.uxml";
-        public const string STAGE_INFO_HEADER_PATH = "/microengineer_flightui/microengineer/stageinfoheader.uxml";
-        public const string BASE_WINDOW_PATH = "/microengineer_flightui/microengineer/basewindow.uxml";
-        public const string EDIT_WINDOWS_PATH = "/microengineer_flightui/microengineer/editwindows.uxml";
-        public const string OAB_STAGE_INFO_PATH = "/microengineer_oabui/microengineer/stageinfooab.uxml";
-        public const string MANEUVER_HEADER_PATH = "/microengineer_flightui/microengineer/maneuverheader.uxml";
-        public const string MANEUVER_FOOTER_PATH = "/microengineer_flightui/microengineer/maneuverfooter.uxml";
+        public const string MAIN_GUI_HEADER_PATH = "/microengineer_flightui/ui/mainguiheader.uxml";
+        public const string ENTRY_WINDOW_PATH = "/microengineer_flightui/ui/entrywindow.uxml";
+        public const string STAGE_INFO_HEADER_PATH = "/microengineer_flightui/ui/stageinfoheader.uxml";
+        public const string BASE_WINDOW_PATH = "/microengineer_flightui/ui/basewindow.uxml";
+        public const string EDIT_WINDOWS_PATH = "/microengineer_flightui/ui/editwindows.uxml";
+        public const string OAB_STAGE_INFO_PATH = "/microengineer_oabui/ui/stageinfooab.uxml";
+        public const string MANEUVER_HEADER_PATH = "/microengineer_flightui/ui/maneuverheader.uxml";
+        public const string MANEUVER_FOOTER_PATH = "/microengineer_flightui/ui/maneuverfooter.uxml";
 
         public VisualTreeAsset MainGuiHeader;
         public VisualTreeAsset EntryWindow;

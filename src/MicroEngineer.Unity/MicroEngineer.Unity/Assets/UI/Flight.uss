@@ -62,7 +62,7 @@
 }
 
 .maingui-settings-button {
-    background-image: url('project://database/Assets/UI/micro_engineer/icon.png?fileID=21300000&guid=5806ecf31f3b0fa43ac287bb4c04f42c&type=3#icon');
+    background-image: url('project://database/Assets/Images/icon.png?fileID=2800000&guid=a337dd323c4bee54b83e29a094201415&type=3#icon');
     -unity-background-scale-mode: scale-to-fit;
     width: 20px;
     height: 20px;
@@ -194,7 +194,7 @@
 .settings-button__background {
     width: 100%;
     height: 100%;
-    background-image: url('project://database/Assets/UI/micro_engineer/k2dt_gear.png?fileID=21300000&guid=6454bfe5f58cdaa4f9897b09c2bdccf6&type=3#k2dt_gear');
+    background-image: url('project://database/Assets/Images/k2dt_gear.png?fileID=2800000&guid=38a265d89c98fc24c840619c14b92066&type=3#k2dt_gear');
     -unity-background-image-tint-color: rgb(192, 199, 213);
 }
 
@@ -224,7 +224,7 @@
 .popout-button__background {
     width: 100%;
     height: 100%;
-    background-image: url('project://database/Assets/UI/micro_engineer/falki_popout.png?fileID=21300000&guid=73a472312cc8b7f48aecff51bf39de59&type=3#falki_popout');
+    background-image: url('project://database/Assets/Images/falki_popout.png?fileID=2800000&guid=82e12052974a2c14284653fc68b71bdd&type=3#falki_popout');
     -unity-background-image-tint-color: rgb(192, 199, 213);
 }
 
@@ -254,7 +254,7 @@
 .close-button__background {
     width: 100%;
     height: 100%;
-    background-image: url('project://database/Assets/UI/micro_engineer/k2d2_cross.png?fileID=2800000&guid=f495cb715406a4f4cac351a10a68524d&type=3#k2d2_cross');
+    background-image: url('project://database/Assets/Images/k2d2_cross.png?fileID=2800000&guid=770f096405448fe4faa3c0f72e6c4062&type=3#k2d2_cross');
     -unity-background-image-tint-color: rgb(192, 199, 213);
     -unity-background-scale-mode: scale-to-fit;
 }
@@ -286,7 +286,7 @@
 .minimize-button__background {
     width: 100%;
     height: 100%;
-    background-image: url('project://database/Assets/UI/micro_engineer/minus.png?fileID=21300000&guid=93b098f39c9d9f246ba8dd4f5e6b2660&type=3#minus');
+    background-image: url('project://database/Assets/Images/minus.png?fileID=2800000&guid=33180f4957f9e7b43bbaa8e5cbf9a92e&type=3#minus');
     -unity-background-image-tint-color: rgb(192, 199, 213);
     -unity-background-scale-mode: scale-to-fit;
 }
@@ -972,7 +972,7 @@
 }
 
 .edit-windows__entry__increase-decimal-background {
-    background-image: url('project://database/Assets/UI/micro_engineer/increase-decimal-19.png?fileID=21300000&guid=9d212dc85f20a98409c1e1226b013534&type=3#increase-decimal-19');
+    background-image: url('project://database/Assets/Images/increase-decimal-19.png?fileID=2800000&guid=7f773c97e72f0db42b2822189c11712f&type=3#increase-decimal-19');
     width: 100%;
     height: 100%;
 }
@@ -1007,7 +1007,7 @@
 .edit-windows__entry__decrease-decimal-background {
     width: 100%;
     height: 100%;
-    background-image: url('project://database/Assets/UI/micro_engineer/decrease-decimal-19.png?fileID=21300000&guid=cc622487d470f8e45a6e3b5489ab3fa5&type=3#decrease-decimal-19');
+    background-image: url('project://database/Assets/Images/decrease-decimal-19.png?fileID=2800000&guid=36db74e74c84313499c4e79a6d66afe2&type=3#decrease-decimal-19');
 }
 
 .edit-windows__entry__decrease-decimal-background:disabled {
