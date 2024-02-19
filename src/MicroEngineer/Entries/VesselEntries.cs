@@ -556,3 +556,26 @@ public class NonStageableResourcesEntry : VesselEntry
 
     public override string ValueDisplay => base.ValueDisplay;
 }
+
+public class AngularSpeed : VesselEntry
+{
+    public AngularSpeed()
+    {
+        Name = "Angular Speed";
+        Description = "";
+        Category = MicroEntryCategory.Vessel;
+        IsDefault = false;
+        BaseUnit = "rad/s";
+        NumberOfDecimalDigits = 2;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue =
+            Utility.ActiveVessel.mainBody.celestialMotionFrame.ToLocalAngularVelocity(Utility.ActiveVessel
+                .AngularVelocity).magnitude;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
