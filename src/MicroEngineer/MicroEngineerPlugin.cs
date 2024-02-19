@@ -12,7 +12,6 @@ using MicroEngineer.Utilities;
 using MicroEngineer.Windows;
 using UitkForKsp2.API;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Utility = MicroEngineer.Utilities.Utility;
 
 namespace MicroEngineer;
@@ -49,49 +48,6 @@ public class MicroEngineerPlugin : BaseSpaceWarpPlugin
         LoadAssemblies();
         
         MessageManager.Instance.SubscribeToMessages();
-
-        /*
-        // Load the UI from the asset bundle
-        var myFirstWindowUxml = AssetManager.GetAsset<VisualTreeAsset>(
-            // The case-insensitive path to the asset in the bundle is composed of:
-            // - The mod GUID:
-            $"{ModGuid}/" +
-            // - The name of the asset bundle:
-            "MicroEngineer_ui/" +
-            // - The path to the asset in your Unity project (without the "Assets/" part)
-            "ui/myfirstwindow/myfirstwindow.uxml"
-        );
-        */
-
-        /*
-        // Create the window options object
-        var windowOptions = new WindowOptions
-        {
-            // The ID of the window. It should be unique to your mod.
-            WindowId = "MicroEngineer_MyFirstWindow",
-            // The transform of parent game object of the window.
-            // If null, it will be created under the main canvas.
-            Parent = null,
-            // Whether or not the window can be hidden with F2.
-            IsHidingEnabled = true,
-            // Whether to disable game input when typing into text fields.
-            DisableGameInputForTextFields = true,
-            MoveOptions = new MoveOptions
-            {
-                // Whether or not the window can be moved by dragging.
-                IsMovingEnabled = true,
-                // Whether or not the window can only be moved within the screen bounds.
-                CheckScreenBounds = true
-            }
-        };
-        */
-
-        /*
-        // Create the window
-        var myFirstWindow = Window.Create(windowOptions, myFirstWindowUxml);
-        // Add a controller for the UI to the window's game object
-        var myFirstWindowController = myFirstWindow.gameObject.AddComponent<MyFirstWindowController>();
-        */
 
         // Register Flight AppBar button
         Appbar.RegisterAppButton(
@@ -163,6 +119,16 @@ public class MicroEngineerPlugin : BaseSpaceWarpPlugin
     
     public void Update()
     {
+        var activeVessel = GameManager.Instance?.Game?.ViewController?.GetActiveVehicle(true)?.GetSimVessel(true);
+        if (activeVessel != null)
+        {
+            var x = activeVessel.CenterOfMass;
+            var y = activeVessel.LabelPosition;
+            var z = activeVessel.gravityForPos;
+            var i = activeVessel.RevealMass();
+            var j = activeVessel.CurrentCoM;    
+        }
+        
         // Keyboard shortcut for opening the UI
         if ((Settings.EnableKeybinding?.Value ?? false) &&
             (Settings.Keybind1.Value != KeyCode.None ? Input.GetKey(Settings.Keybind1.Value) : true) &&
