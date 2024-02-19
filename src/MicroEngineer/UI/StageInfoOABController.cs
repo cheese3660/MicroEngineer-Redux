@@ -70,7 +70,7 @@ namespace MicroEngineer.UI
             TorqueContainer = TitleBar.Q<VisualElement>("torque-container");
             var torqueEntry = StageInfoOABWindow.Entries.Find(e => e is Torque);
             VisualElement torqueControl = new BaseEntryControl();
-            InitializeControl((BaseEntryControl)torqueControl, torqueEntry);
+            InitializeControl((BaseEntryControl)torqueControl, torqueEntry, subscribeToValueChanges: true);
             TorqueContainer.Add(torqueControl);
 
             CloseButton = TitleBar.Q<Button>("close-button");
@@ -185,7 +185,7 @@ namespace MicroEngineer.UI
             // so here we'll sum up values for all calculated stages and won't subscribe to automatic value changes
             entry.EntryValue = _totalDeltaVASL;
             control = new BaseEntryControl();
-            InitializeControl((BaseEntryControl)control, entry);
+            InitializeControl((BaseEntryControl)control, entry, subscribeToValueChanges: false);
             TotalAslDeltaVContainer.Add(control);
 
             entry = StageInfoOABWindow.Entries.Find(e => e is TotalDeltaVVac_OAB);
@@ -193,7 +193,7 @@ namespace MicroEngineer.UI
             // so here we'll sum up values for all calculated stages and won't subscribe to automatic value changes
             entry.EntryValue = _totalDeltaVVac;
             control = new BaseEntryControl();
-            InitializeControl((BaseEntryControl)control, entry);
+            InitializeControl((BaseEntryControl)control, entry, subscribeToValueChanges: false);
             TotalVacDeltaVContainer.Add(control);
 
             entry = StageInfoOABWindow.Entries.Find(e => e is TotalBurnTime_OAB);
@@ -209,23 +209,37 @@ namespace MicroEngineer.UI
             OABSceneController.Instance.ShowGui = false;
         }
         
-        public void InitializeControl(BaseEntryControl control, BaseEntry entry)
+        public void InitializeControl(BaseEntryControl control, BaseEntry entry, bool subscribeToValueChanges = true)
         {
             control.EntryName = entry.Name;
             control.Value = entry.ValueDisplay;
             control.Unit = entry.UnitDisplay;
+            
+            // When entry's value changes, update value and unit labels
+            if (subscribeToValueChanges)
+                entry.OnEntryValueChanged += (value, unit, hideWhenNoData) => HandleEntryValueChanged(control, value, unit, hideWhenNoData);
 
             // Handle alternate units
             if (entry.AltUnit != null)
                 control.RegisterCallback<MouseDownEvent>(_ => ToggleAltUnit(control, entry), TrickleDown.TrickleDown);
             
-            if (entry.HideWhenNoData)
+            HandleEntryValueChanged(control, control.Value, control.Unit, entry.HideWhenNoData);
+        }
+        
+        // BaseEntryControl initialization
+        public void HandleEntryValueChanged(BaseEntryControl control, string value, string unit, bool hideWhenNoData)
+        {
+            if (hideWhenNoData)
             {
-                if (control.Value == "-" || string.IsNullOrEmpty(control.Value))
+                if (value == "-" || string.IsNullOrEmpty(value))
                     control.style.display = DisplayStyle.None;
                 else
                     control.style.display = DisplayStyle.Flex;
             }
+            
+            control.Value = value;
+            if (control.Unit != unit)
+                control.Unit = unit;
         }
         
         public void ToggleAltUnit(BaseEntryControl control, BaseEntry entry)
