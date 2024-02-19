@@ -431,3 +431,104 @@ public class ExternalTemperature : SurfaceEntry
 
     public override string ValueDisplay => base.ValueDisplay;
 }
+
+public class TerrainAltitudeFromCenter : SurfaceEntry
+{
+    public TerrainAltitudeFromCenter()
+    {
+        Name = "Terrain Alt.from Cent.";
+        Description = "Shows terrain's altitude measured from the center of the body.";
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        MiliUnit = "mm";
+        BaseUnit = "m";
+        KiloUnit = "km";
+        MegaUnit = "Mm";
+        GigaUnit = "Gm";
+        NumberOfDecimalDigits = 0;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue =
+            Utility.ActiveVessel.mainBody.SurfaceProvider.GetTerrainAltitudeFromCenter(
+                Utility.ActiveVessel.Latitude, Utility.ActiveVessel.Longitude);
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class TerrainAltitudeFromRadius : SurfaceEntry
+{
+    public TerrainAltitudeFromRadius()
+    {
+        Name = "Terrain Alt.from Rad.";
+        Description = "Shows terrain's altitude measured from the radius of the body.";
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        MiliUnit = "mm";
+        BaseUnit = "m";
+        KiloUnit = "km";
+        MegaUnit = "Mm";
+        GigaUnit = "Gm";
+        NumberOfDecimalDigits = 0;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        var terrainAltitudeFromCenter = Utility.ActiveVessel?.mainBody?.SurfaceProvider?.GetTerrainAltitudeFromCenter(
+            Utility.ActiveVessel.Latitude, Utility.ActiveVessel.Longitude);
+
+        var bodyRadius = Utility.ActiveVessel.mainBody?.radius;
+        
+        if (!terrainAltitudeFromCenter.HasValue || !bodyRadius.HasValue)
+        {
+            EntryValue = null;
+            return;
+        }
+
+        EntryValue = terrainAltitudeFromCenter.Value - bodyRadius.Value;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class AltitudeFromCenter : SurfaceEntry
+{
+    public AltitudeFromCenter()
+    {
+        Name = "Altitude From Center";
+        Description = "Vessel's altitude measured from the center of the body.";
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        MiliUnit = "mm";
+        BaseUnit = "m";
+        KiloUnit = "km";
+        MegaUnit = "Mm";
+        GigaUnit = "Gm";
+        NumberOfDecimalDigits = 0;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        Utility.ActiveVessel.mainBody.SurfaceProvider.GetAltitudeFromTerrain(
+            Utility.ActiveVessel.Orbit.Position, out var terrainAltitude, out var terrainToSceneryOffset);
+
+        var terrainAltitudeFromCenter = Utility.ActiveVessel.mainBody?.SurfaceProvider?.GetTerrainAltitudeFromCenter(
+            Utility.ActiveVessel.Latitude, Utility.ActiveVessel.Longitude);
+
+        if (terrainAltitudeFromCenter.HasValue)
+        {
+            EntryValue = terrainAltitudeFromCenter.Value + terrainAltitude;
+        }
+        else
+        {
+            EntryValue = null;
+        }
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}

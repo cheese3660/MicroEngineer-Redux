@@ -1,4 +1,7 @@
-﻿using MicroEngineer.Utilities;
+﻿using KSP;
+using KSP.Game;
+using KSP.Sim.ResourceSystem;
+using MicroEngineer.Utilities;
 
 namespace MicroEngineer.Entries;
 
@@ -444,6 +447,111 @@ public class TotalCommandCrewCapacity : VesselEntry
     public override void RefreshData()
     {
         EntryValue = Utility.ActiveVessel.TotalCommandCrewCapacity;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class CommNetRange : VesselEntry
+{
+    public CommNetRange()
+    {
+        Name = "CommNet Range";
+        Description = "Maximum CommNet range.";
+        Category = MicroEntryCategory.Vessel;
+        IsDefault = false;
+        MiliUnit = "m";
+        BaseUnit = "km";
+        KiloUnit = "Mm";
+        MegaUnit = "Gm";
+        GigaUnit = "Tm";
+        NumberOfDecimalDigits = 0;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.SimulationObject.Telemetry.CommNetRangeMeters / 1000f;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class CommNetStatus : VesselEntry
+{
+    public CommNetStatus()
+    {
+        Name = "CommNet Status";
+        Description = "Status of the CommNet connection.";
+        Category = MicroEntryCategory.Vessel;
+        IsDefault = false;
+        BaseUnit = null;
+        Formatting = null;
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.SimulationObject.Telemetry.CommNetConnectionStatus;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class NonStageableResourcesEntry : VesselEntry
+{
+    public NonStageableResourcesEntry()
+    {
+        Name = "Non-stageable resources";
+        Description = "Display a list of all non-stageable resources on the vessel, their values and capacity.";
+        EntryType = EntryType.NonStageableResources;
+        Category = MicroEntryCategory.Vessel;
+        IsDefault = false;
+        BaseUnit = null;
+        NumberOfDecimalDigits = 2;
+        Formatting = "N";
+        AltUnit = new AltUnit()
+        {
+            IsActive = false,
+            Unit = string.Empty, //not used, will be handled in NonStageableResourcesEntriesBuilder
+            Factor = 1 //not used, will be handled in NonStageableResourcesEntriesBuilder
+        };
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = ParseNonstageableResources(Utility.ActiveVessel.SimulationObject?.PartOwner?.ContainerGroup.GetAllResourcesContainedData().ToList());
+    }
+
+    private List<NonStageableResource> ParseNonstageableResources(List<ContainedResourceData> resources)
+    {
+        var parsedResources = new List<NonStageableResource>();
+        
+        if (resources != null && !resources.Any())
+            return parsedResources;
+
+        foreach (var resource in resources)
+        {
+            var resourceDefinition =  GameManager.Instance.Game.ResourceDefinitionDatabase.GetDefinitionData(resource.ResourceID);
+            if (resourceDefinition.resourceProperties.NonStageable)
+            {
+                parsedResources.Add(new NonStageableResource
+                {
+                    Name = resourceDefinition.DisplayName,
+                    CapacityUnits = resource.CapacityUnits,
+                    StoredUnits = resource.StoredUnits,
+                    
+                    // I'm sorry for this :(
+                    Unit = resourceDefinition.name switch
+                    {
+                        "ElectricCharge" => Units.SymbolUnits,
+                        "Water" => "L",
+                        _ => Units.SymbolTonne
+                    }
+                });
+            }
+        }
+
+        return parsedResources;
     }
 
     public override string ValueDisplay => base.ValueDisplay;

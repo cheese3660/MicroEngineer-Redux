@@ -148,3 +148,28 @@ public class BodyHighOrbitMaxAltitude : BodyEntry
 
     public override string ValueDisplay => base.ValueDisplay;
 }
+
+public class BodyOceanDepth : BodyEntry
+{
+    public BodyOceanDepth()
+    {
+        Name = "Max Ocean Depth";
+        Description = "Maximum depth of the ocean (altitude from the radius).";
+        Category = MicroEntryCategory.Body;
+        IsDefault = false;
+        MiliUnit = "mm";
+        BaseUnit = "m";
+        KiloUnit = "km";
+        MegaUnit = "Mm";
+        GigaUnit = "Gm";
+        NumberOfDecimalDigits = 0;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.mainBody?.oceanAltitude;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}

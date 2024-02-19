@@ -143,6 +143,9 @@ namespace MicroEngineer.UI
                     case EntryType.StageInfo:
                         control = new StageInfoEntriesBuilder(entry);
                         break;
+                    case EntryType.NonStageableResources:
+                        control = new NonStageableResourcesEntriesBuilder(entry);
+                        break;
                     case EntryType.Separator:
                         control = new SeparatorEntryControl();
                         break;

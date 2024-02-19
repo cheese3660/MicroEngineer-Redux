@@ -14,7 +14,7 @@ namespace MicroEngineer.UI
         private (EditWindowsItemControl control, BaseEntry entry) _selectedInstalledEntry;
         private List<EntryWindow> _editableWindows;
         private List<(EditWindowsItemControl control, BaseEntry entry)> _installedControls = new();
-        private float _timeOfLastClick;
+        private DateTime _timeOfLastClick;
         
         public int SelectedWindowId;
 
@@ -120,13 +120,13 @@ namespace MicroEngineer.UI
             {
                 if (control != _selectedAvailableEntry.control)
                     SelectAvailable(control, entry);
-                else if (Time.time - _timeOfLastClick < 0.5f)
+                else if ((DateTime.Now - _timeOfLastClick).TotalSeconds < 0.5f)
                     AddEntryToSelectedWindow(entry); // double click on control
                 else
                     UnselectAvailable(control); // longer than 500 ms since the last click, so we'll unselect the control
             }
 
-            _timeOfLastClick = Time.time;
+            _timeOfLastClick = DateTime.Now;
         }
 
         /// <summary>
@@ -200,13 +200,13 @@ namespace MicroEngineer.UI
             {
                 if (control != _selectedInstalledEntry.control)
                     SelectInstalled(control, entry);
-                else if (Time.time - _timeOfLastClick < 0.5f)
+                else if ((DateTime.Now - _timeOfLastClick).TotalSeconds < 0.5f)
                     RemoveEntryFromInstalledWindow(); // double click on control - doesn't work with UitkForKsp2 v2.1.1
                 else
                     UnselectInstalled(control); // longer than 500 ms since the last click, so we'll unselect the control
             }
 
-            _timeOfLastClick = Time.time;
+            _timeOfLastClick = DateTime.Now;
         }
 
         public void SelectInstalled(EditWindowsItemControl control, BaseEntry entry)

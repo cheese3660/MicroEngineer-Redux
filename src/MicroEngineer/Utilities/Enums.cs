@@ -48,6 +48,7 @@ public enum EntryType
     Time,
     LatitudeLongitude,
     StageInfo,
+    NonStageableResources,
     StageInfoOAB,
     Separator
 }

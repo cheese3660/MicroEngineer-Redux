@@ -70,6 +70,9 @@ public class BaseEntry
                     case EntryType.StageInfo:
                         OnStageInfoChanged?.Invoke((List<Stage>)entryValue);
                         break;
+                    case EntryType.NonStageableResources:
+                        OnNonStageableResourcesChanged?.Invoke((List<NonStageableResource>)entryValue);
+                        break;
                     case EntryType.Separator:
                         break;
                     default:
@@ -83,10 +86,12 @@ public class BaseEntry
     public delegate void EntryTimeValueChanged(int years, int days, int hours, int minutes, int seconds);
     public delegate void EntryLatLonChanged(int degrees, int minutes, int seconds, string direction);
     public delegate void StageInfoChanged(List<Stage> stages);
+    public delegate void NonStageableResourcesChanged(List<NonStageableResource> resources);
     public event EntryValueChanged OnEntryValueChanged;
     public event EntryTimeValueChanged OnEntryTimeValueChanged;
     public event EntryLatLonChanged OnEntryLatLonChanged;
     public event StageInfoChanged OnStageInfoChanged;
+    public event NonStageableResourcesChanged OnNonStageableResourcesChanged;
 
     /// <summary>
     /// Controls how the value should be displayed. Can be overriden in a inherited class for a more specialized implementation.
