@@ -651,7 +651,7 @@ public class DistanceAtCloseApproach1 : TargetEntry
         Name = "C.A.Dist.1";
         Description = "Close approach distance to target (1).";
         Category = MicroEntryCategory.Target;
-        IsDefault = true;
+        IsDefault = false;
         HideWhenNoData = true;
         MiliUnit = "mm";
         BaseUnit = "m";
@@ -680,7 +680,7 @@ public class TimeToCloseApproach1 : TargetEntry
         Description = "Close approach time to target (1).";
         EntryType = EntryType.Time;
         Category = MicroEntryCategory.Target;
-        IsDefault = true;
+        IsDefault = false;
         HideWhenNoData = true;
         Formatting = null;
     }
@@ -843,7 +843,7 @@ public class Target_BodyAtmosphereMaxAltitude : TargetEntry
     public override string ValueDisplay => base.ValueDisplay;
 }
 
-public class Target_BodyLowOrbitMaxAltitude : BodyEntry
+public class Target_BodyLowOrbitMaxAltitude : TargetEntry
 {
     public Target_BodyLowOrbitMaxAltitude()
     {
@@ -876,7 +876,7 @@ public class Target_BodyLowOrbitMaxAltitude : BodyEntry
     public override string ValueDisplay => base.ValueDisplay;
 }
 
-public class Target_BodyHighOrbitMaxAltitude : BodyEntry
+public class Target_BodyHighOrbitMaxAltitude : TargetEntry
 {
     public Target_BodyHighOrbitMaxAltitude()
     {
@@ -904,6 +904,119 @@ public class Target_BodyHighOrbitMaxAltitude : BodyEntry
         
         EntryValue = Utility.GetBodyScienceRegion(Utility.ActiveVessel.TargetObject.DisplayName).SituationData
             ?.HighOrbitMaxAltitude / 1000;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class Target_ClosestApproachDistance : TargetEntry
+{
+    public Target_ClosestApproachDistance()
+    {
+        Name = "C. Approach Dist.";
+        Description = "Distance between active vessel and target vessel at closest approach.";
+        Category = MicroEntryCategory.Target;
+        IsDefault = true;
+        MiliUnit = "mm";
+        BaseUnit = "m";
+        KiloUnit = "km";
+        MegaUnit = "Mm";
+        GigaUnit = "Gm";
+        NumberOfDecimalDigits = 0;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        //EntryValue = Utility.ActiveVessel.TargetObject?.Orbiter?.PatchedConicsOrbit.ClosestApproachDistance;
+
+        var activeVesselOrbit = Utility.ActiveVessel.Orbit;
+        var targetOrbit = Utility.ActiveVessel.TargetObject?.Orbit as PatchedConicsOrbit;
+
+        if (activeVesselOrbit == null || targetOrbit == null)
+        {
+            EntryValue = null;
+            return;
+        }
+
+        EntryValue = activeVesselOrbit.NextClosestApproachDistance(
+            targetOrbit, Utility.UniversalTime);
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class Target_ClosestApproachTime : TargetEntry
+{
+    public Target_ClosestApproachTime()
+    {
+        Name = "C. Approach Time";
+        Description = "Time until close approach with the target.";
+        EntryType = EntryType.Time;
+        Category = MicroEntryCategory.Target;
+        IsDefault = true;
+        Formatting = null;
+    }
+
+    public override void RefreshData()
+    {
+        var activeVesselOrbit = Utility.ActiveVessel.Orbit;
+        var targetOrbit = Utility.ActiveVessel.TargetObject?.Orbit as PatchedConicsOrbit;
+
+        if (activeVesselOrbit == null || targetOrbit == null)
+        {
+            EntryValue = null;
+            return;
+        }
+
+        EntryValue = activeVesselOrbit.NextClosestApproachTime(
+            targetOrbit, Utility.UniversalTime) - Utility.UniversalTime;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class Target_ClosestApproachRelativeSpeed : TargetEntry
+{
+    public Target_ClosestApproachRelativeSpeed()
+    {
+        Name = "C. Approach Speed";
+        Description = "Relative speed at close approach with the target.";
+        Category = MicroEntryCategory.Target;
+        IsDefault = true;
+        MiliUnit = "mm/s";
+        BaseUnit = "m/s";
+        KiloUnit = "km/s";
+        MegaUnit = "Mm/s";
+        GigaUnit = "Gm/s";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+        AltUnit = new AltUnit()
+        {
+            IsActive = false,
+            Unit = "km/h",
+            Factor = (60f * 60f) / 1000f
+        };
+    }
+
+    public override void RefreshData()
+    {
+        var activeVesselOrbit = Utility.ActiveVessel.Orbit;
+        var targetOrbit = Utility.ActiveVessel.TargetObject?.Orbit as PatchedConicsOrbit;
+
+        if (activeVesselOrbit == null || targetOrbit == null)
+        {
+            EntryValue = null;
+            return;
+        }
+
+        var closeApproachTime = activeVesselOrbit.NextClosestApproachTime(
+            targetOrbit, Utility.UniversalTime);
+
+        var vesselVelocity = activeVesselOrbit.WorldOrbitalVelocityAtUT(closeApproachTime);
+        var targetVelocity = targetOrbit.WorldOrbitalVelocityAtUT(closeApproachTime);
+        
+        EntryValue = (vesselVelocity - targetVelocity).magnitude;
     }
 
     public override string ValueDisplay => base.ValueDisplay;
