@@ -53,6 +53,56 @@ public class Mass : VesselEntry
     public override string ValueDisplay => base.ValueDisplay;
 }
 
+public class DryMass : VesselEntry
+{
+    public DryMass()
+    {
+        Name = "Total Dry Mass";
+        Description = "Total current dry mass.";
+        Category = MicroEntryCategory.Vessel;
+        IsDefault = false;
+        MiliUnit = "g";
+        BaseUnit = "kg";
+        KiloUnit = "T";
+        MegaUnit = "kT";
+        GigaUnit = "MT";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.VesselDeltaV?.StageInfo.FirstOrDefault()?.DryMass * 1000;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class FuelMass : VesselEntry
+{
+    public FuelMass()
+    {
+        Name = "Fuel Mass";
+        Description = "Total fuel mass remaining on the vessel.";
+        Category = MicroEntryCategory.Vessel;
+        IsDefault = false;
+        MiliUnit = "g";
+        BaseUnit = "kg";
+        KiloUnit = "T";
+        MegaUnit = "kT";
+        GigaUnit = "MT";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.VesselDeltaV?.StageInfo.FirstOrDefault()?.FuelMass * 1000;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
 public class TotalDeltaVActual : VesselEntry
 {
     public TotalDeltaVActual()
@@ -364,27 +414,6 @@ public class FuelPercentage : VesselEntry
     public override void RefreshData()
     {
         EntryValue = Utility.ActiveVessel.FuelPercentage;
-    }
-
-    public override string ValueDisplay => base.ValueDisplay;
-}
-
-public class StageFuelPercentage : VesselEntry
-{
-    public StageFuelPercentage()
-    {
-        Name = "Stage fuel";
-        Description = "Stage fuel percentage left.";
-        Category = MicroEntryCategory.Vessel;
-        IsDefault = false;
-        BaseUnit = "%";
-        NumberOfDecimalDigits = 1;
-        Formatting = "N";
-    }
-
-    public override void RefreshData()
-    {
-        EntryValue = Utility.ActiveVessel.StageFuelPercentage;
     }
 
     public override string ValueDisplay => base.ValueDisplay;

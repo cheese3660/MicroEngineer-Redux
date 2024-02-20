@@ -61,3 +61,154 @@ public class StageInfo : StageInfoEntry
         return stages;
     }
 }
+
+public class StageFuelPercentage : StageInfoEntry
+{
+    public StageFuelPercentage()
+    {
+        Name = "Stage Fuel %";
+        Description = "Stage fuel percentage left.";
+        Category = MicroEntryCategory.Stage;
+        IsDefault = false;
+        BaseUnit = "%";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.StageFuelPercentage;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class StageDryMass : StageInfoEntry
+{
+    public StageDryMass()
+    {
+        Name = "Stage Dry Mass";
+        Description = "Dry mass of the current stage (will be decoupled on staging).";
+        Category = MicroEntryCategory.Stage;
+        IsDefault = false;
+        MiliUnit = "g";
+        BaseUnit = "kg";
+        KiloUnit = "T";
+        MegaUnit = "kT";
+        GigaUnit = "MT";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        var stageInfo = Utility.ActiveVessel.VesselDeltaV?.StageInfo;
+        if (stageInfo == null || stageInfo.Count == 0)
+        {
+            EntryValue = null;
+            return;
+        }
+
+        var stageDryMass = stageInfo[0].DryMass;
+
+        // if a next stage exists then subtract its drymass from the current drymass to get current stage drymass 
+        if (stageInfo.Count >= 2)
+        {
+            stageDryMass -= stageInfo[1].DryMass;
+        }
+        
+        // multiply by 100 to convert from tons to kg
+        EntryValue = stageDryMass * 1000;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class StageFuelMass : StageInfoEntry
+{
+    public StageFuelMass()
+    {
+        Name = "Stage Fuel Mass";
+        Description = "Remaining fuel mass of the current stage.";
+        Category = MicroEntryCategory.Stage;
+        IsDefault = false;
+        MiliUnit = "g";
+        BaseUnit = "kg";
+        KiloUnit = "T";
+        MegaUnit = "kT";
+        GigaUnit = "MT";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        var stage = Utility.ActiveVessel.VesselDeltaV?.StageInfo.FirstOrDefault();
+        if (stage == null)
+        {
+            EntryValue = null;
+            return;
+        }
+
+        EntryValue = stage.EndMass != 0f ? (stage.StartMass - stage.EndMass) * 1000f : 0f;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class StageEndMass : StageInfoEntry
+{
+    public StageEndMass()
+    {
+        Name = "Stage End Mass";
+        Description = "End mass of the current stage.";
+        Category = MicroEntryCategory.Stage;
+        IsDefault = false;
+        MiliUnit = "g";
+        BaseUnit = "kg";
+        KiloUnit = "T";
+        MegaUnit = "kT";
+        GigaUnit = "MT";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        var stage = Utility.ActiveVessel.VesselDeltaV?.StageInfo.FirstOrDefault();
+        if (stage == null)
+        {
+            EntryValue = null;
+            return;
+        }
+
+        EntryValue = stage.EndMass == 0 ? stage.StartMass * 1000 : stage.EndMass == stage.StartMass ? null: stage.EndMass * 1000;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class DecoupledMass : StageInfoEntry
+{
+    public DecoupledMass()
+    {
+        Name = "Decoupled Mass";
+        Description = "Decoupled mass of the current stage.";
+        Category = MicroEntryCategory.Stage;
+        IsDefault = false;
+        MiliUnit = "g";
+        BaseUnit = "kg";
+        KiloUnit = "T";
+        MegaUnit = "kT";
+        GigaUnit = "MT";
+        NumberOfDecimalDigits = 1;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.VesselDeltaV?.StageInfo.FirstOrDefault()?.DecoupledMass * 1000;
+    }
+
+    public override string ValueDisplay => base.ValueDisplay;
+}
