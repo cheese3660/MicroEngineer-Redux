@@ -1,4 +1,6 @@
-﻿using KSP.Game.Science;
+﻿using KSP.Game;
+using KSP.Game.Science;
+using KSP.Sim;
 using KSP.Sim.impl;
 using MicroEngineer.Utilities;
 using static KSP.Rendering.Planets.PQSData;
@@ -268,11 +270,11 @@ public class Latitude : SurfaceEntry
 {
     public Latitude()
     {
-        Name = "Latitude";
-        Description = "Shows the vessel's latitude position around the celestial body. Latitude is the angle from the equator towards the poles.";
+        Name = "Latitude (geo)";
+        Description = "Shows the vessel's latitude position around the celestial body. Latitude is the angle from the equator towards the poles. Geo format.";
         EntryType = EntryType.LatitudeLongitude;
         Category = MicroEntryCategory.Surface;
-        IsDefault = true;
+        IsDefault = false;
         Formatting = null;
     }
 
@@ -287,10 +289,10 @@ public class LatitudeDecimal : SurfaceEntry
 {
     public LatitudeDecimal()
     {
-        Name = "Latitude (dec)";
+        Name = "Latitude";
         Description = "Shows the vessel's latitude position around the celestial body. Latitude is the angle from the equator towards the poles. Decimal format.";
         Category = MicroEntryCategory.Surface;
-        IsDefault = false;
+        IsDefault = true;
         BaseUnit = null;
         NumberOfDecimalDigits = 3;
         Formatting = "N";
@@ -306,11 +308,11 @@ public class Longitude : SurfaceEntry
 {
     public Longitude()
     {
-        Name = "Longitude";
-        Description = "Shows the vessel's longitude position around the celestial body. Longitude is the angle from the body's prime meridian to the current meridian.";
+        Name = "Longitude (geo)";
+        Description = "Shows the vessel's longitude position around the celestial body. Longitude is the angle from the body's prime meridian to the current meridian. Geo format.";
         EntryType = EntryType.LatitudeLongitude;
         Category = MicroEntryCategory.Surface;
-        IsDefault = true;
+        IsDefault = false;
         Formatting = null;
     }
 
@@ -325,10 +327,10 @@ public class LongitudeDecimal : SurfaceEntry
 {
     public LongitudeDecimal()
     {
-        Name = "Longitude (dec)";
+        Name = "Longitude";
         Description = "Shows the vessel's longitude position around the celestial body. Longitude is the angle from the body's prime meridian to the current meridian. Decimal format.";
         Category = MicroEntryCategory.Surface;
-        IsDefault = false;
+        IsDefault = true;
         BaseUnit = null;
         NumberOfDecimalDigits = 3;
         Formatting = "N";
@@ -531,4 +533,141 @@ public class AltitudeFromCenter : SurfaceEntry
     }
 
     public override string ValueDisplay => base.ValueDisplay;
+}
+
+public class TimeToImpact : SurfaceEntry
+{
+    public TimeToImpact()
+    {
+        Name = "Impact Time";
+        Description = "Time until vessel collides with the body.";
+        EntryType = EntryType.Time;
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        Formatting = null;
+    }
+
+    public override void RefreshData()
+    {
+        if (!Utility.ActiveVessel.IsOnCollisionOnCurrentPatch())
+        {
+            EntryValue = null;
+            return;
+        }
+        
+        EntryValue = Utility.ActiveVessel.Orbit.EndUT - Utility.UniversalTime;
+    }
+}
+
+public class ImpactLatitude : SurfaceEntry
+{
+    public ImpactLatitude()
+    {
+        Name = "Impact Latitude";
+        Description = "Latitude of the collision point.";
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        BaseUnit = null;
+        NumberOfDecimalDigits = 3;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        if (!Utility.ActiveVessel.IsOnCollisionOnCurrentPatch())
+        {
+            EntryValue = null;
+            return;
+        }
+        
+        OrbitExtensions.GetOrbitalParametersAtUT(Utility.ActiveVessel, Utility.ActiveVessel.Orbit.EndUT, out double latitude, out double longitude, out double altitude);
+        EntryValue = latitude;
+    }
+}
+
+public class ImpactLongitude : SurfaceEntry
+{
+    public ImpactLongitude()
+    {
+        Name = "Impact Longitude";
+        Description = "Longitude of the collision point.";
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        BaseUnit = null;
+        NumberOfDecimalDigits = 3;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        if (!Utility.ActiveVessel.IsOnCollisionOnCurrentPatch())
+        {
+            EntryValue = null;
+            return;
+        }
+        
+        OrbitExtensions.GetOrbitalParametersAtUT(Utility.ActiveVessel, Utility.ActiveVessel.Orbit.EndUT, out double latitude, out double longitude, out double altitude);
+        EntryValue = longitude;
+    }
+}
+
+public class ImpactSeaLevelAltitude : SurfaceEntry
+{
+    public ImpactSeaLevelAltitude()
+    {
+        Name = "Impact Alt.(sea)";
+        Description = "Altitude above sea level of the collision point.";
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        MiliUnit = "mm";
+        BaseUnit = "m";
+        KiloUnit = "km";
+        MegaUnit = "Mm";
+        GigaUnit = "Gm";
+        NumberOfDecimalDigits = 0;
+        Formatting = "N";
+    }
+
+    public override void RefreshData()
+    {
+        if (!Utility.ActiveVessel.IsOnCollisionOnCurrentPatch())
+        {
+            EntryValue = null;
+            return;
+        }
+        
+        OrbitExtensions.GetOrbitalParametersAtUT(Utility.ActiveVessel, Utility.ActiveVessel.Orbit.EndUT, out double latitude, out double longitude, out double altitude);
+        EntryValue = altitude;
+    }
+}
+
+public class ImpactRegion : SurfaceEntry
+{
+    public ImpactRegion()
+    {
+        Name = "Impact Region";
+        Description = "Region where the collision will occur.";
+        Category = MicroEntryCategory.Surface;
+        IsDefault = false;
+        BaseUnit = null;
+        Formatting = null;
+    }
+
+    public override void RefreshData()
+    {
+        if (!Utility.ActiveVessel.IsOnCollisionOnCurrentPatch())
+        {
+            EntryValue = null;
+            return;
+        }
+        
+        var bodyName = Utility.ActiveVessel.mainBody.Name;
+        var position = new Position(Utility.ActiveVessel.Orbit.ReferenceFrame, Utility.ActiveVessel.Orbit.GetRelativePositionAtUT(Utility.ActiveVessel.Orbit.EndUT));
+        OrbitExtensions.GetOrbitalParametersAtUT(Utility.ActiveVessel, Utility.ActiveVessel.Orbit.EndUT, out double latitude, out double longitude, out double altitude);
+
+        var scienceRegionDefinition = GameManager.Instance.Game.ScienceManager.ScienceRegionsDataProvider.GetScienceRegionAt(bodyName,
+            position, latitude, longitude, includeDiscoverables: true);
+
+        EntryValue = ScienceRegionsHelper.GetRegionDisplayName(scienceRegionDefinition.Id);
+    }
 }

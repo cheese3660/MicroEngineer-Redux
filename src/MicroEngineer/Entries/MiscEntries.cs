@@ -281,3 +281,21 @@ public class AvailableSciencePoints : MiscEntry
 
     public override string ValueDisplay => base.ValueDisplay;
 }
+
+public class CurrentPatchEndType : MiscEntry
+{
+    public CurrentPatchEndType()
+    {
+        Name = "Patch End";
+        Description = "Specifies the patch transition type for the current patched conic.";
+        Category = MicroEntryCategory.Misc;
+        IsDefault = false;
+        BaseUnit = null;
+        Formatting = null;
+    }
+
+    public override void RefreshData()
+    {
+        EntryValue = Utility.ActiveVessel.Orbit.PatchEndTransition;
+    }
+}
