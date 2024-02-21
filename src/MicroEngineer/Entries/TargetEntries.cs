@@ -913,7 +913,7 @@ public class Target_ClosestApproachDistance : TargetEntry
 {
     public Target_ClosestApproachDistance()
     {
-        Name = "C. Approach Dist.";
+        Name = "C.Approach Dist.";
         Description = "Distance between active vessel and target vessel at closest approach.";
         Category = MicroEntryCategory.Target;
         IsDefault = true;
@@ -950,7 +950,7 @@ public class Target_ClosestApproachTime : TargetEntry
 {
     public Target_ClosestApproachTime()
     {
-        Name = "C. Approach Time";
+        Name = "C.Approach Time";
         Description = "Time until close approach with the target.";
         EntryType = EntryType.Time;
         Category = MicroEntryCategory.Target;
@@ -980,7 +980,7 @@ public class Target_ClosestApproachRelativeSpeed : TargetEntry
 {
     public Target_ClosestApproachRelativeSpeed()
     {
-        Name = "C. Approach Speed";
+        Name = "C.Approach Speed";
         Description = "Relative speed at close approach with the target.";
         Category = MicroEntryCategory.Target;
         IsDefault = true;

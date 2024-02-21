@@ -501,7 +501,7 @@ public class AltitudeFromCenter : SurfaceEntry
 {
     public AltitudeFromCenter()
     {
-        Name = "Altitude From Center";
+        Name = "Altitude from Center";
         Description = "Vessel's altitude measured from the center of the body.";
         Category = MicroEntryCategory.Surface;
         IsDefault = false;

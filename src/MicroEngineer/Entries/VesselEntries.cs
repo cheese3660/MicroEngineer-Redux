@@ -57,7 +57,7 @@ public class DryMass : VesselEntry
 {
     public DryMass()
     {
-        Name = "Total Dry Mass";
+        Name = "Dry Mass";
         Description = "Total current dry mass.";
         Category = MicroEntryCategory.Vessel;
         IsDefault = false;
