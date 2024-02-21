@@ -1,0 +1,30 @@
+{
+  "spec": "2.0",
+  "mod_id": "MicroEngineer",
+  "author": "Falki-git",
+  "name": "Micro Engineer",
+  "description": "Get in-flight and VAB information about your current vessel",
+  "source": "https://github.com/Falki-git/MicroEngineer",
+  "version": "1.8.0",
+  "version_check": "TODO",
+  "ksp2_version": {
+    "min": "0.2.0",
+    "max": "*"
+  },
+  "dependencies": [
+    {
+      "id":  "com.github.x606.spacewarp",
+	  "version": {
+        "min": "1.7.0",
+	    "max": "*"
+	  }
+	},
+    {
+	  "id":  "UitkForKsp2",
+	  "version": {
+	    "min": "2.4.1",
+	    "max": "*"
+	  }
+	}        
+  ]
+}
