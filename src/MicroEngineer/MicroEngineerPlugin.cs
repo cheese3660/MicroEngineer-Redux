@@ -119,16 +119,6 @@ public class MicroEngineerPlugin : BaseSpaceWarpPlugin
     
     public void Update()
     {
-        var activeVessel = GameManager.Instance?.Game?.ViewController?.GetActiveVehicle(true)?.GetSimVessel(true);
-        if (activeVessel != null)
-        {
-            var x = activeVessel.CenterOfMass;
-            var y = activeVessel.LabelPosition;
-            var z = activeVessel.gravityForPos;
-            var i = activeVessel.RevealMass();
-            var j = activeVessel.CurrentCoM;    
-        }
-        
         // Keyboard shortcut for opening the UI
         if ((Settings.EnableKeybinding?.Value ?? false) &&
             (Settings.Keybind1.Value != KeyCode.None ? Input.GetKey(Settings.Keybind1.Value) : true) &&

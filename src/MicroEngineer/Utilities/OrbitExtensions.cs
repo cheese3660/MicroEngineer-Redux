@@ -4,6 +4,9 @@ using KSP.Sim.impl;
 
 namespace MicroEngineer.Utilities;
 
+/// <summary>
+/// Taken mostly from Node Manager: https://github.com/schlosrat/NodeManager/blob/master/src/NodeManager/MJ/OrbitExtensions.cs
+/// </summary>
 public static class OrbitExtensions
 {
     public static double NextClosestApproachTime(
