@@ -56,7 +56,7 @@
     -unity-text-align: middle-left;
     flex-grow: 1;
     padding-left: 10px;
-    -unity-font-definition: url('project://database/Packages/uitkforksp2.controls/Assets/Theme/Fonts/LEDCounter7/led_counter-7%20SDF.asset?fileID=11400000&guid=33e1e97b69ec355479ba49006381fc06&type=2#led_counter-7 SDF');
+    -unity-font-definition: var(--font-title-big);
     font-size: 16px;
     padding-bottom: 0;
 }

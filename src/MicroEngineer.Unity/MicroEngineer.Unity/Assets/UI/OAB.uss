@@ -129,7 +129,7 @@
 }
 
 #torque-container #entry-value {
-    -unity-font-definition: url('project://database/Packages/uitkforksp2.controls/Assets/Theme/Fonts/JetBrainsMono/JetBrainsMono-Bold%20SDF.asset?fileID=11400000&guid=5d23620e1b8bb5e49ab80186ee3fed9b&type=2#JetBrainsMono-Bold SDF');
+    -unity-font-definition: var(--font-bold);
     -unity-text-align: middle-right;
     padding-right: 2px;
     flex-grow: 1;
