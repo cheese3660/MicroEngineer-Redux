@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 605c54ab65fdc93449090613c67732b1
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: microengineer_flightui.bundle
+  assetBundleVariant: 
+  script: {fileID: 12385, guid: 0000000000000000e000000000000000, type: 0}
+  disableValidation: 0
