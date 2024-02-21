@@ -54,7 +54,9 @@ namespace MicroEngineer.UI
             CloseButton = Root.Q<Button>("close-button");
             CloseButton.RegisterCallback<PointerUpEvent>(_ => CloseWindow());
             AvailableScrollView = Root.Q<ScrollView>("available-scrollview");
+            AvailableScrollView.StopMouseEventsToGameInputPropagation();
             InstalledScrollView = Root.Q<ScrollView>("installed-scrollview");
+            InstalledScrollView.StopMouseEventsToGameInputPropagation();
             CategoryDropdown = Root.Q<DropdownField>("category__dropdown");
             SelectedWindow = Root.Q<TextField>("selected-window");
             SelectedWindow.RegisterValueChangedCallback(RenameWindow);
