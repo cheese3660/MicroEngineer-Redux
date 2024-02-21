@@ -6,7 +6,7 @@
   "description": "Get in-flight and VAB information about your current vessel",
   "source": "https://github.com/Falki-git/MicroEngineer",
   "version": "1.8.0",
-  "version_check": "TODO",
+  "version_check": "https://raw.githubusercontent.com/Falki-git/MicroEngineer/master/plugin_template/swinfo.json",
   "ksp2_version": {
     "min": "0.2.0",
     "max": "*"
