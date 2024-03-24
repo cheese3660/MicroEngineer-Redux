@@ -56,7 +56,7 @@ public static class TransferInfo
             from.localPosition = Utility.ActiveVessel.Orbit.Position.localPosition;
             from.currentOrbit = Utility.ActiveVessel.Orbit;
 
-            // Inner lookp => ActiveVessel (from)
+            // Inner loop => ActiveVessel (from)
             for (int j = 0; j < numberOfLoopTries; j++)
             {
                 if (from.referenceBody == to.referenceBody)
