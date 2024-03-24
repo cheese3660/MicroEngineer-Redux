@@ -244,20 +244,10 @@ public class TotalLift : FlightEntry
 
     public override void RefreshData()
     {
-        EntryValue = AeroForces.TotalLift;
+        EntryValue = AeroForces.TotalLift * 1000;
     }
 
-    public override string ValueDisplay
-    {
-        get
-        {
-            if (EntryValue == null)
-                return "-";
-
-            double toReturn = (double)EntryValue * 1000;
-            return String.IsNullOrEmpty(base.Formatting) ? toReturn.ToString() : String.Format(base.Formatting, toReturn);
-        }
-    }
+    public override string ValueDisplay => base.ValueDisplay;
 }
 
 public class TotalDrag : FlightEntry
@@ -279,20 +269,10 @@ public class TotalDrag : FlightEntry
 
     public override void RefreshData()
     {
-        EntryValue = AeroForces.TotalDrag;
+        EntryValue = AeroForces.TotalDrag * 1000;
     }
 
-    public override string ValueDisplay
-    {
-        get
-        {
-            if (EntryValue == null)
-                return "-";
-
-            double toReturn = (double)EntryValue * 1000;
-            return String.IsNullOrEmpty(base.Formatting) ? toReturn.ToString() : String.Format(base.Formatting, toReturn);
-        }
-    }
+    public override string ValueDisplay => base.ValueDisplay;
 }
 
 public class LiftDivDrag : FlightEntry
