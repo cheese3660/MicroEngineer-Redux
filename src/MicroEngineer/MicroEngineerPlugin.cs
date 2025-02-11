@@ -1,29 +1,27 @@
 using System.Reflection;
-using BepInEx;
 using JetBrains.Annotations;
 using KSP.Game;
 using MicroEngineer.Managers;
 using SpaceWarp;
-using SpaceWarp.API.Assets;
 using SpaceWarp.API.Mods;
-using SpaceWarp.API.UI.Appbar;
 using MicroEngineer.UI;
 using MicroEngineer.Utilities;
 using MicroEngineer.Windows;
+using Redux.ExtraModTypes;
+using SpaceWarp.UI.API.Appbar;
 using UitkForKsp2.API;
 using UnityEngine;
+using UnityEngine.UI;
 using Utility = MicroEngineer.Utilities.Utility;
 
 namespace MicroEngineer;
 
-[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-[BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
-public class MicroEngineerPlugin : BaseSpaceWarpPlugin
+public class MicroEngineerPlugin : KerbalMod
 {
     // Useful in case some other mod wants to use this mod a dependency
-    [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
-    [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
-    [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
+    [PublicAPI] public const string ModGuid = "MicroEngineer";
+    [PublicAPI] public const string ModName = "MicroEngineer";
+    [PublicAPI] public const string ModVer = "1.8.1";
 
     /// Singleton instance of the plugin class
     [PublicAPI] public static MicroEngineerPlugin Instance { get; set; }
@@ -35,25 +33,56 @@ public class MicroEngineerPlugin : BaseSpaceWarpPlugin
     
     public Coroutine MainUpdateLoop;
 
+    internal AssetBundle FlightUi;
+    internal AssetBundle OabUi;
+    internal Texture2D Icon;
+    
+    public override void OnPreInitialized()
+    {
+
+        var assetsPath = Path.Combine(SWMetadata.Folder.FullName, "assets");
+        var bundlesPath = Path.Combine(assetsPath, "bundles");
+        var imagesPath = Path.Combine(assetsPath, "images");
+        
+        var icon = Path.Combine(imagesPath, "icon.png");
+        var bytes = File.ReadAllBytes(icon);
+        Icon = new Texture2D(2, 2);
+        
+        Icon.LoadImage(bytes);
+        
+        
+        FlightUi = AssetBundle.LoadFromFile(Path.Combine(bundlesPath, "microengineer_flightui.bundle"));
+        OabUi = AssetBundle.LoadFromFile(Path.Combine(bundlesPath, "microengineer_oabui.bundle"));
+
+        foreach (var item in FlightUi.GetAllAssetNames())
+        {
+            SWLogger.LogInfo($"Flight UI Item: {item}");
+        }
+
+        foreach (var item in OabUi.GetAllAssetNames())
+        {
+            SWLogger.LogInfo($"OAB UI Item: {item}");
+        }
+        
+        Instance = this;
+    }
+
     /// <summary>
     /// Runs when the mod is first initialized.
     /// </summary>
     public override void OnInitialized()
     {
-        base.OnInitialized();
-
-        Instance = this;
 
         // Load all the other assemblies used by this mod
         LoadAssemblies();
         
         MessageManager.Instance.SubscribeToMessages();
-
+        
         // Register Flight AppBar button
         Appbar.RegisterAppButton(
             ModName,
             ToolbarFlightButtonID,
-            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
+            Icon,
             isOpen =>
             {
                 if (isOpen)
@@ -71,7 +100,7 @@ public class MicroEngineerPlugin : BaseSpaceWarpPlugin
         Appbar.RegisterOABAppButton(
             ModName,
             ToolbarOabButtonID,
-            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
+            Icon,
             isOpen =>
             {
                 if (isOpen)
@@ -86,16 +115,22 @@ public class MicroEngineerPlugin : BaseSpaceWarpPlugin
         MainUpdateLoop = StartCoroutine(DoFlightUpdate());
     }
 
+    public override void OnPostInitialized()
+    {
+    }
+
     /// <summary>
     /// Loads all the assemblies for the mod.
     /// </summary>
     private static void LoadAssemblies()
     {
         // Load the Unity project assembly
-        var currentFolder = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory!.FullName;
-        var unityAssembly = Assembly.LoadFrom(Path.Combine(currentFolder, "MicroEngineer.Unity.dll"));
+        var unityAssembly = Assembly.LoadFrom(Path.Combine(Instance.SWMetadata.Folder.FullName, "MicroEngineer.Unity.dll"));
         // Register any custom UI controls from the loaded assembly
-        CustomControls.RegisterFromAssembly(unityAssembly);
+        if (!Application.isEditor)
+        {
+            CustomControls.RegisterFromAssembly(unityAssembly);
+        }
     }
     
     private System.Collections.IEnumerator DoFlightUpdate()
@@ -108,7 +143,7 @@ public class MicroEngineerPlugin : BaseSpaceWarpPlugin
             }
             catch (Exception ex)
             {
-                Logger.LogError("Unhandled exception in the DoFlightUpdate loop.\n" +
+                SWLogger.LogError("Unhandled exception in the DoFlightUpdate loop.\n" +
                                 $"Exception: {ex.Message}\n" +
                                 $"Stack Trace: {ex.StackTrace}");
             }

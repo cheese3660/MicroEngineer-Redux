@@ -1,5 +1,4 @@
-﻿using BepInEx.Logging;
-using KSP.Sim.impl;
+﻿using KSP.Sim.impl;
 using KSP.Sim;
 using UnityEngine;
 

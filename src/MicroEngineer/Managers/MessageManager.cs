@@ -1,16 +1,16 @@
-﻿using BepInEx.Logging;
-using KSP.Game;
+﻿using KSP.Game;
 using KSP.Messages;
 using MicroEngineer.Entries;
 using MicroEngineer.UI;
 using MicroEngineer.Utilities;
 using MicroEngineer.Windows;
+using ReduxLib.Logging;
 
 namespace MicroEngineer.Managers;
 
 public class MessageManager
 {
-    private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("MicroEngineer.MessageManager");
+    private static readonly ILogger _logger = ReduxLib.ReduxLib.GetLogger("MicroEngineer.MessageManager");
     private static MessageManager _instance;
 
     public MessageManager()

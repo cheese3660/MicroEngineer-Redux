@@ -5,7 +5,7 @@ using KSP.Sim.Maneuver;
 using Newtonsoft.Json;
 using UnityEngine;
 using static KSP.Rendering.Planets.PQSData;
-using BepInEx.Logging;
+using ReduxLib.Logging;
 using JetBrains.Annotations;
 using KSP.Game.Science;
 using KSP.Messages;
@@ -14,6 +14,7 @@ using MicroEngineer.Managers;
 using MicroEngineer.Windows;
 using UitkForKsp2.API;
 using UnityEngine.UIElements;
+using ILogger = ReduxLib.Logging.ILogger;
 
 namespace MicroEngineer.Utilities;
 
@@ -23,7 +24,7 @@ public static class Utility
     public static ManeuverNodeData CurrentManeuver;
     public static string LayoutPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "MicroLayout.json");
     public static int CurrentLayoutVersion = 14;
-    private static ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource("MicroEngineer.Utility");
+    private static ILogger Logger = ReduxLib.ReduxLib.GetLogger("MicroEngineer.Utility");
     public static GameStateConfiguration GameState;
     public static MessageCenter MessageCenter;
     public static VesselDeltaVComponent VesselDeltaVComponentOAB;

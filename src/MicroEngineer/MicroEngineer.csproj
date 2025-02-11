@@ -3,20 +3,541 @@
     <!-- References -->
     <ItemGroup Label="NuGet package references">
         <!-- Add references to any NuGet packages you want to use in your mod here -->
-        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all"/>
-        <PackageReference Include="BepInEx.Core" Version="5.*"/>
-        <PackageReference Include="HarmonyX" Version="2.10.1"/>
-        <PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.2.0" PrivateAssets="all" Publicize="true"/>
-        <PackageReference Include="SpaceWarp" Version="1.8.0"/>
-        <PackageReference Include="SpaceWarp.PluginInfoProps" Version="1.*"/>
-        <PackageReference Include="UitkForKsp2" Version="2.4.0"/>
-        <PackageReference Include="UnityEngine.Modules" Version="2022.3.5"/>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
     <ItemGroup Label="Project references">
         <!-- Add references to any other projects in your solution that you want to use in your mod here -->
         <ProjectReference Include="..\MicroEngineer.Unity\MicroEngineer.Unity.csproj" Private="false"/>
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="Ak.Wwise.Api.WAAPI">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Ak.Wwise.Api.WAAPI.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AK.Wwise.Unity.API">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\AK.Wwise.Unity.API.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AK.Wwise.Unity.API.WwiseTypes">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\AK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AK.Wwise.Unity.MonoBehaviour">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\AK.Wwise.Unity.MonoBehaviour.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AK.Wwise.Unity.Timeline">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\AK.Wwise.Unity.Timeline.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AssetRipper.TextureDecoder">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\AssetRipper.TextureDecoder.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AssetsTools.NET">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\AssetsTools.NET.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="AssetsTools.NET.Texture">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\AssetsTools.NET.Texture.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Backtrace.Unity">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Backtrace.Unity.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Castle.Core">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Castle.Core.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="DataLink.Shared.Net">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\DataLink.Shared.Net.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="DOTween">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\DOTween.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="DOTweenPro">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\DOTweenPro.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Febucci.Attributes.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Febucci.Attributes.Runtime.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Febucci.TextAnimator.Demo.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Febucci.TextAnimator.Demo.Runtime.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Febucci.TextAnimator.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Febucci.TextAnimator.Runtime.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Febucci.TextAnimator.TMP.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Febucci.TextAnimator.TMP.Runtime.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="IGTools">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\IGTools.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="KSPLogging">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\KSPLogging.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Microsoft.CSharp">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Microsoft.CSharp.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="Mono.Security">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Mono.Security.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="mscorlib">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\mscorlib.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="PriorityQueue">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\PriorityQueue.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="ReduxLib">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\ReduxLib.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="ShapesRuntime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\ShapesRuntime.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="SpaceWarp">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\SpaceWarp.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="SpaceWarp.Game">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\SpaceWarp.Game.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="SpaceWarp.Sound">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\SpaceWarp.Sound.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="SpaceWarp.UI">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\SpaceWarp.UI.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="SpaceWarp.VersionChecking">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\SpaceWarp.VersionChecking.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="StbImageSharp">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\StbImageSharp.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="StbImageWriteSharp">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\StbImageWriteSharp.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Buffers">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Buffers.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.ComponentModel.Composition">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.ComponentModel.Composition.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Configuration">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Configuration.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Core">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Core.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Data">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Data.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Data.DataSetExtensions">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Data.DataSetExtensions.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Drawing">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Drawing.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.EnterpriseServices">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.EnterpriseServices.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Half">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Half.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.IO.Compression">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.IO.Compression.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.IO.Compression.FileSystem">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.IO.Compression.FileSystem.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Memory">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Memory.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Net.Http">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Net.Http.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Numerics">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Numerics.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Runtime.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Runtime.CompilerServices.Unsafe">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Runtime.Serialization">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Runtime.Serialization.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Security">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Security.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.ServiceModel.Internals">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.ServiceModel.Internals.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Transactions">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Transactions.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Xml">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Xml.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="System.Xml.Linq">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\System.Xml.Linq.dll</HintPath>
+        <Private>False</Private>
+      </Reference>
+      <Reference Include="UitkForKsp2">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UitkForKsp2.dll</HintPath>
+      </Reference>
+      <Reference Include="uitkforksp2.controls.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\uitkforksp2.controls.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections.LowLevel.ILSupport">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Deformations">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Deformations.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Entities">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Entities.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Entities.Hybrid">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Entities.Hybrid.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Entities.Hybrid.HybridComponents">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Entities.Hybrid.HybridComponents.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Entities.UI">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Entities.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InternalAPIEngineBridge.002">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.InternalAPIEngineBridge.002.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics.Extensions">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Mathematics.Extensions.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics.Extensions.Hybrid">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Mathematics.Extensions.Hybrid.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Profiling.Core">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Profiling.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Scenes">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Scenes.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ScriptableBuildPipeline">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.ScriptableBuildPipeline.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Serialization">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Transforms">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Transforms.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Transforms.Hybrid">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.Transforms.Hybrid.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualScripting.Core">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.VisualScripting.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualScripting.Flow">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.VisualScripting.Flow.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualScripting.State">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\Unity.VisualScripting.State.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ARModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ContentLoadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.NVIDIAModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.NVIDIAModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.PropertiesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>..\..\..\ksp2redux-build1\KSP2_x64_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
     </ItemGroup>
 </Project>
 

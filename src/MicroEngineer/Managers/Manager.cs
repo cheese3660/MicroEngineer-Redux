@@ -1,11 +1,11 @@
-﻿using BepInEx.Logging;
-using KSP.Game;
+﻿using KSP.Game;
 using System.Reflection;
 using MicroEngineer.Entries;
 using MicroEngineer.Utilities;
 using MicroEngineer.Windows;
 using UitkForKsp2.API;
 using UnityEngine;
+using ILogger = ReduxLib.Logging.ILogger;
 
 namespace MicroEngineer.Managers;
 
@@ -16,7 +16,7 @@ public class Manager
     public List<BaseWindow> Windows;
     public List<BaseEntry> Entries;
 
-    private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("MicroEngineer.Manager");
+    private static readonly ILogger _logger = ReduxLib.ReduxLib.GetLogger("MicroEngineer.Manager");
     
     private DateTime _timeOfLastStageInfoUpdate = DateTime.Now;
 

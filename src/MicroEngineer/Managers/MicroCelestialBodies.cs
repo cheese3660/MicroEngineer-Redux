@@ -1,4 +1,4 @@
-﻿using BepInEx.Logging;
+﻿using ReduxLib.Logging;
 using KSP.Game;
 using KSP.Sim.impl;
 
@@ -7,7 +7,7 @@ namespace MicroEngineer.Managers;
 public class MicroCelestialBodies
 {
     private static MicroCelestialBodies _instance;
-    private static readonly ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("MicroEngineer.MicroCelestialBodies");
+    private static readonly ILogger _logger = ReduxLib.ReduxLib.GetLogger("MicroEngineer.MicroCelestialBodies");
 
     public List<CelestialBody> Bodies = new();
 

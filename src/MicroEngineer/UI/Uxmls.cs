@@ -1,14 +1,14 @@
-﻿using BepInEx.Logging;
-using SpaceWarp.API.Assets;
-using UitkForKsp2.API;
+﻿using UitkForKsp2.API;
+using UnityEngine;
 using UnityEngine.UIElements;
+using ILogger = ReduxLib.Logging.ILogger;
 
 namespace MicroEngineer.UI
 {
     public class Uxmls
     {
         private static Uxmls _instance;
-        private static readonly ManualLogSource _logger = Logger.CreateLogSource("MicroEngineer.Uxmls");
+        private static readonly ILogger _logger = ReduxLib.ReduxLib.GetLogger("MicroEngineer.Uxmls");
 
         public const string MAIN_GUI_HEADER_PATH = "/microengineer_flightui/ui/mainguiheader.uxml";
         public const string ENTRY_WINDOW_PATH = "/microengineer_flightui/ui/entrywindow.uxml";
@@ -54,12 +54,22 @@ namespace MicroEngineer.UI
             ManeuverHeader = LoadAsset($"{MANEUVER_HEADER_PATH}");
             ManeuverFooter = LoadAsset($"{MANEUVER_FOOTER_PATH}");
         }
+        
 
         private VisualTreeAsset LoadAsset(string path)
         {
+            _logger.LogInfo($"Loading asset at {path}");
             try
             {
-                return AssetManager.GetAsset<VisualTreeAsset>($"{MicroEngineerPlugin.ModGuid}{path}");
+                var result = path.StartsWith("/microengineer_flightui/ui")
+                    ? MicroEngineerPlugin.Instance.FlightUi.LoadAsset<VisualTreeAsset>(path.Replace("/microengineer_flightui","assets"))
+                    : MicroEngineerPlugin.Instance.OabUi.LoadAsset<VisualTreeAsset>(path.Replace("/microengineer_oabui","assets"));
+
+                if (result == null)
+                {
+                    throw new Exception("Asset does not exist!");
+                }
+                return result;
             }
             catch (Exception ex)
             {

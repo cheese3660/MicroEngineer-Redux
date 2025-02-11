@@ -1,10 +1,11 @@
-﻿using BepInEx.Logging;
+﻿using ReduxLib.Logging;
 using MicroEngineer.Entries;
 using MicroEngineer.Managers;
 using MicroEngineer.Utilities;
 using MicroEngineer.Windows;
 using UnityEngine;
 using UnityEngine.UIElements;
+using ILogger = ReduxLib.Logging.ILogger;
 
 namespace MicroEngineer.UI
 {
@@ -24,7 +25,7 @@ namespace MicroEngineer.UI
         public VisualElement TotalVacDeltaVContainer { get; set; }
         public VisualElement TotalBurnTimeContainer { get; set; }
 
-        private static ManualLogSource _logger = BepInEx.Logging.Logger.CreateLogSource("MicroEngineer.StageInfoOABController");
+        private static ILogger _logger = ReduxLib.ReduxLib.GetLogger("MicroEngineer.StageInfoOABController");
         private bool _lockUiRefresh;
 
         private double _totalDeltaVASL;

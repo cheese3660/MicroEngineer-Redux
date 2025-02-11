@@ -1,4 +1,4 @@
-﻿using BepInEx.Configuration;
+﻿using ReduxLib.Configuration;
 using UnityEngine;
 
 namespace MicroEngineer.Utilities;
@@ -7,50 +7,48 @@ public static class Settings
 {
     public static MicroEngineerPlugin Plugin => MicroEngineerPlugin.Instance;
     
-    public static ConfigEntry<bool> EnableKeybinding;
-    public static ConfigEntry<KeyCode> Keybind1;
-    public static ConfigEntry<KeyCode> Keybind2;
-    public static ConfigEntry<int> MainUpdateLoopUpdateFrequency;
-    public static ConfigEntry<int> StageInfoUpdateFrequency;
+    public static ConfigValue<bool> EnableKeybinding;
+    public static ConfigValue<KeyCode> Keybind1;
+    public static ConfigValue<KeyCode> Keybind2;
+    public static ConfigValue<int> MainUpdateLoopUpdateFrequency;
+    public static ConfigValue<int> StageInfoUpdateFrequency;
 
     public static void Initialize()
     {
-        EnableKeybinding = Plugin.Config.Bind(
+        EnableKeybinding = new(Plugin.SWConfiguration.Bind(
             "Keybinding",
             "Enable keybinding",
             true,
             "Enables or disables keyboard shortcuts to show or hide windows in Flight and OAB scenes."
-        );
+        ));
             
-        Keybind1 = Plugin.Config.Bind(
+        Keybind1 = new(Plugin.SWConfiguration.Bind(
             "Keybinding",
             "Keycode 1",
             KeyCode.LeftControl,
             "First keycode."
-        );
+        ));
             
-        Keybind2 = Plugin.Config.Bind(
+        Keybind2 = new(Plugin.SWConfiguration.Bind(
             "Keybinding",
             "Keycode 2",
             KeyCode.E,
-            "Second keycode.");
+            "Second keycode."));
             
-        MainUpdateLoopUpdateFrequency = Plugin.Config.Bind(
+        MainUpdateLoopUpdateFrequency = new(Plugin.SWConfiguration.Bind(
             "Update Frequency (ms)",
             "Main Update",
             100,
-            new ConfigDescription(
-                "Time in milliseconds between every entry refresh.\n\nIncrease the value for better performance at the cost of longer time between updates.", 
-                new AcceptableValueRange<int>(0, 1000))
-        );
+            "Time in milliseconds between every entry refresh.\n\nIncrease the value for better performance at the cost of longer time between updates.",
+            new RangeConstraint<int>(0,1000)
+        ));
             
-        StageInfoUpdateFrequency = Plugin.Config.Bind(
+        StageInfoUpdateFrequency = new(Plugin.SWConfiguration.Bind(
             "Update Frequency (ms)",
             "Stage Info",
             500,
-            new ConfigDescription(
-                "Time in milliseconds between every Stage Info refresh.\n\nIncrease the value for better performance at the cost of longer time between updates.",
-                new AcceptableValueRange<int>(MainUpdateLoopUpdateFrequency.Value, 1000))
-        );
+            "Time in milliseconds between every Stage Info refresh.\n\nIncrease the value for better performance at the cost of longer time between updates.",
+            new RangeConstraint<int>(0,1000)
+        ));
     }
 }
